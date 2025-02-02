@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi import FastAPI, Depends, HTTPException, Request, Form
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from . import models, schemas, crud
 from .database import SessionLocal, engine
@@ -67,3 +68,11 @@ async def read_root(request: Request, db: Session = Depends(get_db)):
             "companies": companies
         }
     )
+
+@app.post("/companies/")
+async def create_company(
+    name: str = Form(...),  # Получаем данные из формы
+    db: Session = Depends(get_db)
+):
+    db_company = crud.create_company(db, schemas.CompanyCreate(name=name))
+    return RedirectResponse(url="/", status_code=303)  # Перенаправляем на главную страницу

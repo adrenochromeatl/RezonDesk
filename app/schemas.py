@@ -11,7 +11,7 @@ class Company(CompanyBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Заменяем orm_mode на from_attributes
 
 # Схема для объекта
 class ObjectBase(BaseModel):
@@ -25,7 +25,7 @@ class Object(ObjectBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Заменяем orm_mode на from_attributes
 
 # Схема для юрлица
 class LegalEntityBase(BaseModel):
@@ -39,4 +39,4 @@ class LegalEntity(LegalEntityBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Заменяем orm_mode на from_attributes

@@ -12,6 +12,21 @@
     <div class="container mt-5">
         <h1 class="mb-4">Компании</h1>
 
+        <!-- Форма для добавления компании -->
+        <div class="card mb-4 shadow">
+            <div class="card-body">
+                <h5 class="card-title">Добавить компанию</h5>
+                <form action="/companies/" method="post">
+                    <div class="mb-3">
+                        <label for="companyName" class="form-label">Название компании</label>
+                        <input type="text" class="form-control" id="companyName" name="name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Список компаний -->
         <div class="row">
             {% for company in companies %}
             <div class="col-md-4 mb-4">
