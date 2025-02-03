@@ -76,3 +76,26 @@ async def create_company(
 ):
     db_company = crud.create_company(db, schemas.CompanyCreate(name=name))
     return RedirectResponse(url="/", status_code=303)  # Перенаправляем на главную страницу
+
+
+@app.get("/legal-entities")
+async def read_legal_entities(request: Request, db: Session = Depends(get_db)):
+    legal_entities = db.query(models.LegalEntity).all()
+    return templates.TemplateResponse(
+        "legal_entities.html",
+        {
+            "request": request,
+            "legal_entities": legal_entities
+        }
+    )
+
+@app.get("/objects")
+async def read_objects(request: Request, db: Session = Depends(get_db)):
+    objects = db.query(models.Object).all()
+    return templates.TemplateResponse(
+        "objects.html",
+        {
+            "request": request,
+            "objects": objects
+        }
+    )

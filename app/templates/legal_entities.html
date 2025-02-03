@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Юр. лица</h1>
+    <ul>
+        {% for legal in legal_entities %}
+        <li>{{ legal.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
